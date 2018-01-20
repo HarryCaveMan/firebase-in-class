@@ -3,9 +3,14 @@ h1 {
 }
 
 h2 {
-  background-color: #00008B;
   padding-left: 10px;
   padding-right: 10px;
+}
+.panel-heading{
+   background-color: #00008B !important;
+}
+.panel-body{
+  padding-bottom:0;
 }
 
 #search {
