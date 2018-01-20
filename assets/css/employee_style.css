@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+
+h2 {
+  background-color: #00008B;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#search {
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: grey;
+  color: white;
+  text-align: center;
+  
+}
