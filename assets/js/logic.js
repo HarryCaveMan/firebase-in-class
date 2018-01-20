@@ -61,13 +61,13 @@ var config = {
     // create a div displaying user infor
 
     const uDiv = $('<tr>').addClass('well');
-
+    var worked = -moment(employee.start, "MM/DD/YYYY").diff(moment(), "months");
     uDiv.append($('<td>').text(employee.name))
         .append($('<td>').text(employee.role))
         .append($('<td>').text(employee.start))
-        .append($('<td>').text("months worked"))
+        .append($('<td>').text(worked))
         .append($('<td>').text(employee.rate))
-        .append($('<td>').text("paid total"));
+        .append($('<td>').text(worked*employee.rate));
 
     
 
