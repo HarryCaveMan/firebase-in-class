@@ -12,11 +12,12 @@ var config = {
   firebase.initializeApp(config);
   const database = firebase.database().ref('employees');
 
-  function Employee(name,role,start,rate){ //employee constructor
+  function Employee(name,role,start,rate,addedDate){ //employee constructor
   	this.name=name;
   	this.role=role;
   	this.start=start;
   	this.rate=rate;
+    this.addedDate=addedDate;
   }
 
   $('#main-form').on('submit', function(event){
@@ -28,7 +29,48 @@ var config = {
         $('#employee-role').val(),
         $('#start-date').val(),
         $('#rate').val(),
+        firebase.database.ServerValue.TIMESTAMP
     	);
     database.push(newEmployee);
   });
 
+
+  database.orderByChild('dateAdded').limitToLast(4).on("child_added", function(snapshot) {
+
+    // Log everything that's coming out of snapshot
+
+    console.log(snapshot.val());
+
+    $("#recent-employees").append(createTableRow(snapshot.val()));
+
+}, function(err) {
+
+    // Handle errors
+
+    console.log("Error: ", err.code);
+
+});
+  
+  $(document).ready(function(){
+
+  })
+  
+
+  function createTableRow(employee) {
+
+    // create a div displaying user infor
+
+    const uDiv = $('<tr>').addClass('well');
+
+    uDiv.append($('<td>').text(employee.name))
+        .append($('<td>').text(employee.role))
+        .append($('<td>').text(employee.start))
+        .append($('<td>').text("months worked"))
+        .append($('<td>').text(employee.rate))
+        .append($('<td>').text("paid total"));
+
+    
+
+    return uDiv;
+
+}
